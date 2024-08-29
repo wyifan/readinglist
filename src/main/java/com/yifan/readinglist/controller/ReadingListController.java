@@ -16,7 +16,7 @@ import java.util.List;
  * description:
  */
 @Controller
-@RequestMapping("/")
+@RequestMapping("/user")
 public class ReadingListController {
 
     private ReadingListRepository readingListRepository;

@@ -30,5 +30,10 @@ public class ContentController {
     public String handleLogin() {
         return "custom_login";
     }
+
+    @GetMapping("/error")
+    public String handleError() {
+        return "error";
+    }
 }
 

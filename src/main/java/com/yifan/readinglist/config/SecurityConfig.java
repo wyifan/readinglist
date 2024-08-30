@@ -1,5 +1,6 @@
 package com.yifan.readinglist.config;
 
+import com.yifan.readinglist.handler.ReadingUrlAuthenticationSuccessHandler;
 import com.yifan.readinglist.services.ReadingUserDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -14,6 +15,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
 
 /**
  * package_name: com.yifan.readinglist.config
@@ -42,7 +44,13 @@ public class SecurityConfig {
                     registry.requestMatchers("/admin/**").hasRole("ADMIN");
                     registry.requestMatchers("/user/**").hasRole("USER");
                     registry.anyRequest().authenticated();
-                }).formLogin(AbstractAuthenticationFilterConfigurer::permitAll)
+                })
+                .formLogin(httpSecurityFormLoginConfigurer ->
+                        httpSecurityFormLoginConfigurer
+                                .loginPage("/login")
+                                .successHandler(new ReadingUrlAuthenticationSuccessHandler())
+                                .permitAll())
+//                .formLogin(AbstractAuthenticationFilterConfigurer::permitAll)
                 .build();
     }
 

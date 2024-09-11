@@ -3,6 +3,7 @@ package com.yifan.annotation;
 import com.yifan.configuration.BartenderConfiguration;
 import com.yifan.model.Boss;
 import com.yifan.other.BarImportSelector;
+import com.yifan.other.WaiterDeferredImportSelector;
 import com.yifan.other.WaiterRegister;
 import org.springframework.context.annotation.Import;
 
@@ -18,6 +19,6 @@ import java.lang.annotation.*;
 @Documented
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
-@Import({Boss.class, BartenderConfiguration.class, BarImportSelector.class, WaiterRegister.class})
+@Import({Boss.class, BartenderConfiguration.class, BarImportSelector.class, WaiterRegister.class, WaiterDeferredImportSelector.class})
 public @interface EnableTavern {
 }
